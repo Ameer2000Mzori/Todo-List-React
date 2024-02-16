@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { todoList } from './hooks/TodoList.js'
 export default function Todo() {
   return (
     <>
@@ -8,15 +8,9 @@ export default function Todo() {
       </div>
       <div>
         <ul>
-          <li>
-            <p>I WILL DANCE</p>
-          </li>
-          <li>
-            <p>I WILL fly</p>
-          </li>
-          <li>
-            <p>I WILL fight</p>
-          </li>
+          {todoList.map((item, index) => {
+            return <li key={index}>{item.title}</li>
+          })}
         </ul>
       </div>
       <div>
