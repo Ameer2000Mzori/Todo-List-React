@@ -18,10 +18,17 @@ export default function Todo() {
     setTodos((todos) => [...todos, newTodo])
   }
 
-  // here each todo is clicked will become true or false
+  // here each todo is clicked
   const finishedTodo = (e) => {
-    const foundTodo = todos.findIndex((todo) => todo.title === e.textContent)
+    const foundTodo = todos.findIndex((todo) => todo.title === e)
     todos[foundTodo].completed = true
+    console.log(todos)
+  }
+
+  // here is remove todo function
+  const removeTodo = (e) => {
+    const newTodos = todos.filter((todo) => todo.title !== e)
+    setTodos(newTodos)
   }
 
   return (
@@ -33,8 +40,10 @@ export default function Todo() {
         <ul>
           {todos.map((item, index) => {
             return (
-              <li onClick={(e) => finishedTodo(e.target)} key={index}>
-                {item.title}
+              <li key={index}>
+                <p>{item.title}</p>
+                <button onClick={() => finishedTodo(item.title)}>done</button>
+                <button onClick={() => removeTodo(item.title)}>remove</button>
               </li>
             )
           })}
