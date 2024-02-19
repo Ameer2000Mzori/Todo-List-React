@@ -60,52 +60,54 @@ export default function Todo() {
   }
 
   return (
-    <>
-      <div>
-        <h1>todos</h1>
+    <div className="h-[100dvh] w-[100dvw] flex flex-col text-center items-center justify-center">
+      <div className="w-[500px] h-[700px] flex flex-col text-center items-center">
+        <div className="h-[50px] w-[100%] bg-black text-white flex flex-col text-center ietms-center justify-center">
+          <h1>todos</h1>
+        </div>
+        <div>
+          <ul>
+            {todos.map((item, index) => {
+              return (
+                <li key={index}>
+                  <p className={item.completed ? ' line-through' : ''}>
+                    {item.title}
+                  </p>
+                  <button onClick={() => finishedTodo(item.title)}>
+                    {item.completed ? ' undo' : 'done'}
+                  </button>
+                  <button onClick={() => removeTodo(item.title)}>remove</button>
+                  <button onClick={() => editTodo(item.title)}>edit</button>
+                  {editTodos === item.title && ( // Compare to the current item's title
+                    <>
+                      <input
+                        type="text"
+                        value={newEditTodos}
+                        onChange={(e) => {
+                          setNewEditTodos(e.target.value)
+                        }}
+                      />
+                      <button onClick={(e) => doneEdit(item.title)}>
+                        Done Edit
+                      </button>
+                    </>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+        <div>
+          <input
+            type="text"
+            value={newTodos}
+            onChange={(e) => {
+              setNewTodos(e.target.value)
+            }}
+          />
+          <button onClick={addTodo}>Add</button>
+        </div>
       </div>
-      <div>
-        <ul>
-          {todos.map((item, index) => {
-            return (
-              <li key={index}>
-                <p className={item.completed ? ' line-through' : ''}>
-                  {item.title}
-                </p>
-                <button onClick={() => finishedTodo(item.title)}>
-                  {item.completed ? ' undo' : 'done'}
-                </button>
-                <button onClick={() => removeTodo(item.title)}>remove</button>
-                <button onClick={() => editTodo(item.title)}>edit</button>
-                {editTodos === item.title && ( // Compare to the current item's title
-                  <>
-                    <input
-                      type="text"
-                      value={newEditTodos}
-                      onChange={(e) => {
-                        setNewEditTodos(e.target.value)
-                      }}
-                    />
-                    <button onClick={(e) => doneEdit(item.title)}>
-                      Done Edit
-                    </button>
-                  </>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-      <div>
-        <input
-          type="text"
-          value={newTodos}
-          onChange={(e) => {
-            setNewTodos(e.target.value)
-          }}
-        />
-        <button onClick={addTodo}>Add</button>
-      </div>
-    </>
+    </div>
   )
 }
