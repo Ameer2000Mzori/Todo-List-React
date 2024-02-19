@@ -20,8 +20,11 @@ export default function Todo() {
 
   // here each todo is clicked
   const finishedTodo = (e) => {
-    const foundTodo = todos.findIndex((todo) => todo.title === e)
-    todos[foundTodo].completed = true
+    const foundTodoIndex = todos.findIndex((todo) => todo.title === e)
+    if (foundTodoIndex !== -1) {
+      todos[foundTodoIndex].completed = !todos[foundTodoIndex].completed
+    }
+    setTodos([...todos])
     console.log(todos)
   }
 
@@ -41,7 +44,9 @@ export default function Todo() {
           {todos.map((item, index) => {
             return (
               <li key={index}>
-                <p>{item.title}</p>
+                <p className={item.completed ? 'underline' : ''}>
+                  {item.title}
+                </p>
                 <button onClick={() => finishedTodo(item.title)}>done</button>
                 <button onClick={() => removeTodo(item.title)}>remove</button>
               </li>

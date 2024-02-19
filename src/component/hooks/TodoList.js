@@ -5,7 +5,7 @@ export const todoList = [
   },
   {
     title: 'Call mom',
-    completed: false,
+    completed: true,
   },
   {
     title: 'Call dad',
