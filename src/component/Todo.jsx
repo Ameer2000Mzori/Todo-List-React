@@ -11,12 +11,15 @@ export default function Todo() {
   }, [])
 
   const addTodo = () => {
-    const newTodo = {
-      title: 'this is a new todo',
-      completed: false,
-    }
+    if (newTodos !== undefined && newTodos !== null && newTodos !== '') {
+      const newTodo = {
+        title: newTodos,
+        completed: false,
+      }
 
-    setTodos((todos) => [...todos, newTodo])
+      setTodos((todos) => [...todos, newTodo])
+      console.log(todos)
+    }
   }
 
   // here each todo is clicked
