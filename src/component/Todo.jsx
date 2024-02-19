@@ -44,7 +44,7 @@ export default function Todo() {
           {todos.map((item, index) => {
             return (
               <li key={index}>
-                <p className={item.completed ? 'underline' : ''}>
+                <p className={item.completed ? ' line-through' : ''}>
                   {item.title}
                 </p>
                 <button onClick={() => finishedTodo(item.title)}>done</button>
