@@ -18,7 +18,7 @@ export default function Todo() {
         title: newTodos,
         completed: false,
       }
-
+      setNewTodos('')
       setTodos((todos) => [...todos, newTodo])
       console.log(todos)
     }
@@ -66,26 +66,14 @@ export default function Todo() {
           <h1>todos</h1>
         </div>
         <div className="bg-[#9BCF53] h-[80%] w-[100%]">
-          <ul className="h-[100%] w-[100%] flex flex-col flex-wrap items-start gap-4">
+          <ul className="h-[100%] w-[100%] flex flex-col flex-wrap items-center gap-4 pt-4">
             {todos.map((item, index) => {
               return (
                 <li
-                  className="w-[100%] h-[50px] flex flex-row text-center  justify-between items-center"
+                  className="w-[98%] h-[50px] flex flex-row text-center  justify-between items-center p-4 bg-[#BFEA7C]"
                   key={index}
                 >
-                  <p className={item.completed ? ' line-through' : ''}>
-                    {item.title}
-                  </p>
-                  <div>
-                    <button onClick={() => finishedTodo(item.title)}>
-                      {item.completed ? ' undo' : 'done'}
-                    </button>
-                    <button onClick={() => removeTodo(item.title)}>
-                      remove
-                    </button>
-                    <button onClick={() => editTodo(item.title)}>edit</button>
-                  </div>
-                  {editTodos === item.title && ( // Compare to the current item's title
+                  {editTodos === item.title ? ( // Compare to the current item's title
                     <>
                       <input
                         type="text"
@@ -95,8 +83,25 @@ export default function Todo() {
                         }}
                       />
                       <button onClick={(e) => doneEdit(item.title)}>
-                        Done Edit
+                        Done
                       </button>
+                    </>
+                  ) : (
+                    <>
+                      <p className={item.completed ? ' line-through' : ''}>
+                        {item.title}
+                      </p>
+                      <div className="gap-4 h-[100%] w-[150px] flex flex-row text-center items-center justify-between">
+                        <button onClick={() => finishedTodo(item.title)}>
+                          {item.completed ? ' undo' : 'done'}
+                        </button>
+                        <button onClick={() => removeTodo(item.title)}>
+                          remove
+                        </button>
+                        <button onClick={() => editTodo(item.title)}>
+                          edit
+                        </button>
+                      </div>
                     </>
                   )}
                 </li>
