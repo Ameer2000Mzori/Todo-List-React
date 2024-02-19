@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { todoList } from './hooks/TodoList.js'
 export default function Todo() {
   const [todos, setTodos] = useState([])
+  const [newTodos, setNewTodos] = useState('')
 
   // use effect for the first render
 
@@ -55,7 +56,13 @@ export default function Todo() {
         </ul>
       </div>
       <div>
-        <input type="text" />
+        <input
+          type="text"
+          value={newTodos}
+          onChange={(e) => {
+            setNewTodos(e.target.value)
+          }}
+        />
         <button onClick={addTodo}>Add</button>
       </div>
     </>
