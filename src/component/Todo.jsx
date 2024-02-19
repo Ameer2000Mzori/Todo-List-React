@@ -18,9 +18,8 @@ export default function Todo() {
         title: newTodos,
         completed: false,
       }
-      setNewTodos('')
+      // setNewTodos('')
       setTodos((todos) => [...todos, newTodo])
-      console.log(todos)
     }
   }
 
@@ -31,7 +30,6 @@ export default function Todo() {
       todos[foundTodoIndex].completed = !todos[foundTodoIndex].completed
     }
     setTodos([...todos])
-    console.log(todos)
   }
 
   // here is remove todo function
@@ -55,18 +53,17 @@ export default function Todo() {
       todos[foundTodoIndex].title = newEditTodos
     }
     setTodos([...todos])
-    console.log(todos)
     setEditTodos(false)
   }
 
   return (
     <div className="h-[100dvh] w-[100dvw] flex flex-col text-center items-center justify-center bg-[#BFEA7C]">
       <div className="w-[500px] h-[700px] flex flex-col text-center items-center">
-        <div className="h-[10%] w-[100%] bg-[#416D19] text-white flex flex-col text-center ietms-center justify-center">
+        <div className="h-[10%] w-[100%] bg-[#416D19] text-white flex flex-col text-center items-center justify-center">
           <h1>todos</h1>
         </div>
         <div className="bg-[#9BCF53] h-[80%] w-[100%]">
-          <ul className="h-[100%] w-[100%] flex flex-col flex-wrap items-center gap-4 pt-4">
+          <ul className="h-[100%] w-[100%] flex flex-col overflow-auto items-center gap-4 pt-4">
             {todos.map((item, index) => {
               return (
                 <li
