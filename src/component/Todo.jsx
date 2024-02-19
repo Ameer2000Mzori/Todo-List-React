@@ -51,7 +51,9 @@ export default function Todo() {
                 <p className={item.completed ? ' line-through' : ''}>
                   {item.title}
                 </p>
-                <button onClick={() => finishedTodo(item.title)}>done</button>
+                <button onClick={() => finishedTodo(item.title)}>
+                  {item.completed ? ' undo' : 'done'}
+                </button>
                 <button onClick={() => removeTodo(item.title)}>remove</button>
               </li>
             )
