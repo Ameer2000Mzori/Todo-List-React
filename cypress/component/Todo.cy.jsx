@@ -16,4 +16,10 @@ describe('Todo.cy.jsx', () => {
     cy.get('input').type('text')
     cy.get('button').eq(1).contains('remove').click()
   })
+  it('should done and undo ', () => {
+    cy.mount(<Todo />)
+    cy.get('input').type('text')
+    cy.get('button').eq(0).contains('done').click()
+    cy.get('button').eq(0).contains(' undo').click()
+  })
 })
