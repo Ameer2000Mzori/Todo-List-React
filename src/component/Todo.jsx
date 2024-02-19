@@ -60,12 +60,12 @@ export default function Todo() {
   }
 
   return (
-    <div className="h-[100dvh] w-[100dvw] flex flex-col text-center items-center justify-center">
+    <div className="h-[100dvh] w-[100dvw] flex flex-col text-center items-center justify-center bg-[#BFEA7C]">
       <div className="w-[500px] h-[700px] flex flex-col text-center items-center">
-        <div className="h-[50px] w-[100%] bg-black text-white flex flex-col text-center ietms-center justify-center">
+        <div className="h-[10%] w-[100%] bg-[#416D19] text-white flex flex-col text-center ietms-center justify-center">
           <h1>todos</h1>
         </div>
-        <div>
+        <div className="bg-[#9BCF53] h-[80%] w-[100%]">
           <ul>
             {todos.map((item, index) => {
               return (
@@ -97,7 +97,7 @@ export default function Todo() {
             })}
           </ul>
         </div>
-        <div>
+        <div className="h-[10%]  w-[100%] bg-[#416D19] flex flex-row gap-4 text-center items-center justify-center ">
           <input
             type="text"
             value={newTodos}
@@ -105,7 +105,9 @@ export default function Todo() {
               setNewTodos(e.target.value)
             }}
           />
-          <button onClick={addTodo}>Add</button>
+          <button onClick={addTodo} className="text-white">
+            Add
+          </button>
         </div>
       </div>
     </div>
