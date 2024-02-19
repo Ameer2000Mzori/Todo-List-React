@@ -49,7 +49,13 @@ export default function Todo() {
     }
   }
 
-  const doneEdit = () => {
+  const doneEdit = (e) => {
+    const foundTodoIndex = todos.findIndex((todo) => todo.title === e)
+    if (foundTodoIndex !== -1) {
+      todos[foundTodoIndex].title = newEditTodos
+    }
+    setTodos([...todos])
+    console.log(todos)
     setEditTodos(false)
   }
 
@@ -80,7 +86,9 @@ export default function Todo() {
                         setNewEditTodos(e.target.value)
                       }}
                     />
-                    <button onClick={doneEdit}>Done Edit</button>
+                    <button onClick={(e) => doneEdit(item.title)}>
+                      Done Edit
+                    </button>
                   </>
                 )}
               </li>
