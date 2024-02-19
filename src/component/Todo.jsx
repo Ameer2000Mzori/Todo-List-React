@@ -58,7 +58,7 @@ export default function Todo() {
 
   return (
     <div className="h-[100dvh] w-[100dvw] flex flex-col text-center items-center justify-center bg-[#BFEA7C]">
-      <div className="w-[500px] h-[700px] flex flex-col text-center items-center">
+      <div className="w-[100%] h-[70%] sm:w-[500px] sm:h-[700px]   flex flex-col text-center items-center">
         <div className="h-[10%] w-[100%] bg-[#416D19] text-white flex flex-col text-center items-center justify-center">
           <h1>todos</h1>
         </div>
