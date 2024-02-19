@@ -3,6 +3,8 @@ import { todoList } from './hooks/TodoList.js'
 export default function Todo() {
   const [todos, setTodos] = useState([])
   const [newTodos, setNewTodos] = useState('')
+  const [editTodos, setEditTodos] = useState(false)
+  const [newEditTodos, setNewEditTodos] = useState('')
 
   // use effect for the first render
 
@@ -38,6 +40,19 @@ export default function Todo() {
     setTodos(newTodos)
   }
 
+  // this is for editing todo when clicker is clicked
+  const editTodo = (title) => {
+    setEditTodos(title) // Set the title of the todo being edited
+    const foundTodo = todos.find((todo) => todo.title === title)
+    if (foundTodo) {
+      setNewEditTodos(foundTodo.title) // Optionally initialize the input with the current title
+    }
+  }
+
+  const doneEdit = () => {
+    setEditTodos(false)
+  }
+
   return (
     <>
       <div>
@@ -55,6 +70,19 @@ export default function Todo() {
                   {item.completed ? ' undo' : 'done'}
                 </button>
                 <button onClick={() => removeTodo(item.title)}>remove</button>
+                <button onClick={() => editTodo(item.title)}>edit</button>
+                {editTodos === item.title && ( // Compare to the current item's title
+                  <>
+                    <input
+                      type="text"
+                      value={newEditTodos}
+                      onChange={(e) => {
+                        setNewEditTodos(e.target.value)
+                      }}
+                    />
+                    <button onClick={doneEdit}>Done Edit</button>
+                  </>
+                )}
               </li>
             )
           })}
