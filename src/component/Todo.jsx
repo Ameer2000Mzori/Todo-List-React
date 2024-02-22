@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { todoList } from './hooks/TodoList.js'
 import AddTodo from './hooks/AddTodo.js'
+import FinishTodo from './hooks/FinishTodo.js'
+
 export default function Todo() {
   const [todos, setTodos] = useState([])
   const [newTodos, setNewTodos] = useState('')
@@ -12,15 +14,6 @@ export default function Todo() {
   useEffect(() => {
     setTodos(todoList)
   }, [])
-
-  // here each todo is clicked
-  const finishedTodo = (e) => {
-    const foundTodoIndex = todos.findIndex((todo) => todo.title === e)
-    if (foundTodoIndex !== -1) {
-      todos[foundTodoIndex].completed = !todos[foundTodoIndex].completed
-    }
-    setTodos([...todos])
-  }
 
   // here is remove todo function
   const removeTodo = (e) => {
@@ -79,7 +72,11 @@ export default function Todo() {
                         {item.title}
                       </p>
                       <div className="gap-4 h-[100%] w-[150px] flex flex-row text-center items-center justify-between">
-                        <button onClick={() => finishedTodo(item.title)}>
+                        <button
+                          onClick={() =>
+                            FinishTodo(item.title, todos, setTodos)
+                          }
+                        >
                           {item.completed ? ' undo' : 'done'}
                         </button>
                         <button onClick={() => removeTodo(item.title)}>
