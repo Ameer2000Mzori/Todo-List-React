@@ -3,7 +3,8 @@ import { todoList } from './hooks/TodoList.js'
 import AddTodo from './hooks/AddTodo.js'
 import FinishTodo from './hooks/FinishTodo.js'
 import RemoveTodo from './hooks/RemoveTodo.js'
-
+import EditTodo from './hooks/EditTodo.js'
+import DoneEdit from './hooks/DoneEdit.js'
 export default function Todo() {
   const [todos, setTodos] = useState([])
   const [newTodos, setNewTodos] = useState('')
@@ -15,15 +16,6 @@ export default function Todo() {
   useEffect(() => {
     setTodos(todoList)
   }, [])
-
-  // this is for editing todo when clicker is clicked
-  const editTodo = (title) => {
-    setEditTodos(title) // Set the title of the todo being edited
-    const foundTodo = todos.find((todo) => todo.title === title)
-    if (foundTodo) {
-      setNewEditTodos(foundTodo.title) // Optionally initialize the input with the current title
-    }
-  }
 
   const doneEdit = (e) => {
     const foundTodoIndex = todos.findIndex((todo) => todo.title === e)
@@ -57,7 +49,17 @@ export default function Todo() {
                           setNewEditTodos(e.target.value)
                         }}
                       />
-                      <button onClick={(e) => doneEdit(item.title)}>
+                      <button
+                        onClick={(e) =>
+                          DoneEdit(
+                            item.title,
+                            todos,
+                            newEditTodos,
+                            setTodos,
+                            setEditTodos
+                          )
+                        }
+                      >
                         Done
                       </button>
                     </>
@@ -81,7 +83,16 @@ export default function Todo() {
                         >
                           remove
                         </button>
-                        <button onClick={() => editTodo(item.title)}>
+                        <button
+                          onClick={() =>
+                            EditTodo(
+                              item.title,
+                              todos,
+                              setEditTodos,
+                              setNewEditTodos
+                            )
+                          }
+                        >
                           edit
                         </button>
                       </div>
