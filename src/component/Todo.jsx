@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { todoList } from './hooks/TodoList.js'
+import AddTodo from './hooks/AddTodo.js'
 export default function Todo() {
   const [todos, setTodos] = useState([])
   const [newTodos, setNewTodos] = useState('')
@@ -11,17 +12,6 @@ export default function Todo() {
   useEffect(() => {
     setTodos(todoList)
   }, [])
-
-  const addTodo = () => {
-    if (newTodos !== undefined && newTodos !== null && newTodos !== '') {
-      const newTodo = {
-        title: newTodos,
-        completed: false,
-      }
-      // setNewTodos('')
-      setTodos((todos) => [...todos, newTodo])
-    }
-  }
 
   // here each todo is clicked
   const finishedTodo = (e) => {
@@ -114,7 +104,10 @@ export default function Todo() {
               setNewTodos(e.target.value)
             }}
           />
-          <button onClick={addTodo} className="text-white">
+          <button
+            onClick={() => AddTodo(todos, setTodos)}
+            className="text-white"
+          >
             Add
           </button>
         </div>
