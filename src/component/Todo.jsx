@@ -105,7 +105,9 @@ export default function Todo() {
             }}
           />
           <button
-            onClick={() => AddTodo(todos, setTodos)}
+            onClick={() => {
+              AddTodo(newTodos, setTodos, setNewTodos)
+            }}
             className="text-white"
           >
             Add

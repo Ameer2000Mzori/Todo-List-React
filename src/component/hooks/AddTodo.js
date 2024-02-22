@@ -1,11 +1,12 @@
-const AddTodo = (newTodos, setTodos) => {
+const AddTodo = (newTodos, setTodos, setNewTodos) => {
   if (newTodos !== undefined && newTodos !== null && newTodos !== '') {
     const newTodo = {
       title: newTodos,
       completed: false,
     }
-    // setNewTodos('')
+
     setTodos((prev) => [...prev, newTodo])
+    setNewTodos(() => '')
   }
 }
 
