@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { todoList } from './hooks/TodoList.js'
 import AddTodo from './hooks/AddTodo.js'
 import FinishTodo from './hooks/FinishTodo.js'
+import RemoveTodo from './hooks/RemoveTodo.js'
 
 export default function Todo() {
   const [todos, setTodos] = useState([])
@@ -14,12 +15,6 @@ export default function Todo() {
   useEffect(() => {
     setTodos(todoList)
   }, [])
-
-  // here is remove todo function
-  const removeTodo = (e) => {
-    const newTodos = todos.filter((todo) => todo.title !== e)
-    setTodos(newTodos)
-  }
 
   // this is for editing todo when clicker is clicked
   const editTodo = (title) => {
@@ -79,7 +74,11 @@ export default function Todo() {
                         >
                           {item.completed ? ' undo' : 'done'}
                         </button>
-                        <button onClick={() => removeTodo(item.title)}>
+                        <button
+                          onClick={() =>
+                            RemoveTodo(item.title, todos, setTodos)
+                          }
+                        >
                           remove
                         </button>
                         <button onClick={() => editTodo(item.title)}>
